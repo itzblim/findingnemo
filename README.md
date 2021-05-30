@@ -1,4 +1,4 @@
-# findingnemo -- Orbital 2021
+# Orbital 2021 -- Finding Nemo
 
 Impt step: Update api_key.py to your own api key 
 
