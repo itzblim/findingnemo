@@ -61,3 +61,4 @@ print_text(nlb)
 # .svg see if can convert
 # some nested images dun come up
 #
+# possible creation of requirements.txt at the end 
