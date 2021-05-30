@@ -7,48 +7,51 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 import requests
 from yarl import URL
+import validators
 
 
 # Variables
-input_url = "https://eresources.nlb.gov.sg/Main/"
-#input_url = "http://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
+#input_url = "https://eresources.nlb.gov.sg/Main/"
+input_url = "http://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
+#input_url = "http://darwin-online.org.uk/content/frameset?viewtype=text&itemID=F1497&pageseq=5"
 image_urls = []
 ###############
 
 
-def is_valid(url):
+def is_invalid(url):
     """
-    Checks if url is valid
+    Checks if url is invalid
     """
-    try:
-        response = requests.get(url)
-        return True
-    except requests.ConnectionError as exception:
-        return False
+    return not validators.url(url)
 
 
 def is_absolute(url):
     return bool(urlparse(url).netloc)
 
 
-def url_prefix(url):
-    """
-    Prefixes the URL with http://...
-    """
-    return "http://" + URL(url).host
+# def url_prefix(url):
+#     """
+#     Prefixes the URL with https:// or http://
+#     """
+#     if URL(url).scheme == 'https':
+#         return "https://"
+#     else:
+#         return "http://"
 
 
 def abs_relative(url):
     if is_absolute(url):
-        if url.startswith("http://") or url.startswith("https://"):
+        if url.startswith("http://"):
+            return url[:4] + "s" + url[4:]
+        elif url.startswith("https://"):
             return url
         elif url.startswith("//"):
-            return "http:" + url
+            return "https:" + url
         # idk if absolute urls only have http and //, so added final check just in case
         else:
-            return "http://" + url
+            return "https://" + url
     else:
-        return url_prefix(input_url) + url
+        return "https://" + URL(input_url).host + url
 
 
 def get_image_urls(website_url):
@@ -60,16 +63,19 @@ def get_image_urls(website_url):
     # Variables
     temp_list1 = []
     temp_list2 = []
+    temp_list3 = []
 
     # Masks the url to prevent website from rejecting bot and showing HttpError404
     req = Request(website_url,
                   headers={'User-Agent': 'Mozilla/5.0'})
 
     webpage = urlopen(req).read()
-    soup = bs(webpage, "html.parser")
+    soup1 = bs(webpage, "html.parser")
+    soup2 = bs(webpage, "lxml")
+    soup3 = bs(webpage, "html5lib")
 
     # Filter out info under the "src" or "data-src" tags from imgs
-    for img in soup.findAll('img'):
+    for img in soup1.find_all('img'):
         temp_list1.append(img.get('src'))
         if img.get('src') == None:
             temp_list1.append(img.get('data-src'))
@@ -82,15 +88,17 @@ def get_image_urls(website_url):
 
     # Prefix the src/data-src urls with the appropriate url_prefixes
     for img_url in temp_list2:
-        image_urls.append(abs_relative(img_url))
+        temp_list3.append(abs_relative(img_url))
 
     # Remove image_urls if they are not valid
-    for img_url in image_urls:
-        if not is_valid(img_url):
+    for img_url in temp_list3:
+        if is_invalid(img_url):
             print("Removed: " + img_url)
-            image_urls.remove(img_url)
+        else:
+            image_urls.append(img_url)
 
     return image_urls
 
 
 print(get_image_urls(input_url))
+
