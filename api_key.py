@@ -1,1 +1,1 @@
-key_str = "C:/Users/itzbl/Documents/GoogleCloudPlatform/orbital-2021-a77c895bfae6.JSON"
+key_str = "C:/Users/bubuw/OneDrive/Documents/Orbital/orbital-2021-2fb50787d5e2.json"
