@@ -1,6 +1,7 @@
 import requests
 import os
 import shutil
+import pickle
 
 
 def download_image(uri, destination):
@@ -48,3 +49,14 @@ def store_images(img_uri_list):
         shutil.copyfile(get_original(image_id), get_new(image_id))
         img_id_list.append(image_id)
     return img_id_list
+
+
+def store_text_map(text_map, uri):
+    cache_path = "cache/"
+    if (not os.path.exists(cache_path)):
+        os.mkdir(cache_path)
+    return 1
+
+
+def retrieve_text_map(uri):
+    return 1

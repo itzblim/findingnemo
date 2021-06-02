@@ -40,21 +40,28 @@ def get_corners(bounding_box):
             bounding_box.vertices[2].x,
             bounding_box.vertices[2].y)
 
-
 def get_text_map(uri):
     """
-    Retrieves the letters and their bounding boxes from an image.
+    Retrieves the letters, words and their bounding boxes from an image.
     """
     response = detect_text_uri(uri)
-    text = list()
-    boundaries = list()
+    letters = list()
+    lboundaries = list()
+    words = list()
+    wboundaries = list()
+    
     for page in response.full_text_annotation.pages:
         for block in page.blocks:
             for paragraph in block.paragraphs:
                 for word in paragraph.words:
                     for symbol in word.symbols:
-                        text.append(symbol.text)
-                        boundaries.append(get_corners(symbol.bounding_box))
-                    text.append(" ")
-                    boundaries.append((0, 0, 0, 0))
-    return (text, boundaries)
+                        letters.append(symbol.text)
+                        lboundaries.append(get_corners(symbol.bounding_box))
+                    letters.append(" ")
+                    lboundaries.append((0,0,0,0))
+                    
+    for word in response.text_annotations[1:]:
+        words.append(word.description)
+        wboundaries.append(get_corners(word.bounding_poly))
+
+    return (letters, lboundaries, words, wboundaries)

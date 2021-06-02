@@ -43,22 +43,38 @@ def get_website_data(url):
     return process_images(Finder.get_image_urls(url))
 
 
+def load_url():
+    # test
+    return 1
+
+
 # Input website
-input_url = "https://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
+input_url = "https://www.channelnewsasia.com/news/singapore/psle-new-scoring-system-cut-off-points-secondary-school-moe-14704496"
 
 # Preprocess the website's images
-nlb = get_website_data(input_url)
+cna = get_website_data(input_url)
 
 # Run a query on the website's images
-find(nlb, "psle")
+find(cna, "mer info")
 
 # For debugging
-print_text(nlb)
+print_text(cna)
 
+# Backend
 
-#
-# Join the disjoint characters
+# ben to-dos
 # .svg see if can convert
-# some nested images dun come up
+# for svg: https://pypi.org/project/svglib/
+# pickling
+# Create separate files for loading and finding and
+# use cmd line args for url and query
+
+# dynamically loaded webpages? <--?
 #
-# possible creation of requirements.txt at the end 
+# possible creation of requirements.txt at the end -- Bryan
+
+# Replace images in source code -- Bryan
+# Link images so that we can jump to the matched images in the site.
+
+# Frontend
+# look up chrome extension videos

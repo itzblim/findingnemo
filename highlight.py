@@ -24,22 +24,43 @@ def get_matching_regions(text_map, query):
     """
     query = query.lower()
     full_text = "".join(text_map[0]).lower()
-    matches = [False] * len(text_map[0])
-
+    letter_matches = [False] * len(text_map[0])
+    word_matches = list()
+    matching_boundaries = list()
+    letter_index = 0
+    start_index = 0
+    
     for i in range(len(text_map[0])):
         next_start = full_text.find(query, i)
         if (next_start == -1):
             break
         else:
             for j in range(len(query)):
-                matches[next_start + j] = True
+                letter_matches[next_start + j] = True
 
-    matching_regions = list()
-    for i in range(len(matches)):
-        if matches[i]:
-            matching_regions.append(text_map[1][i])
-
-    return matching_regions
+    for i in range(len(text_map[2])):
+        match_found = False;
+        for j in range(len(text_map[2][i])):
+            if (letter_matches[letter_index] and not match_found):
+                match_found = True
+                start_index = letter_index
+            if (match_found and not letter_matches[letter_index]):
+                word_matches.append((i, start_index, letter_index - 1))
+                match_found = False
+            letter_index += 1;
+        if match_found:
+            word_matches.append((i, start_index, letter_index - 1))
+        letter_index += 1;
+    
+    for match in word_matches:
+        matching_boundaries.append((
+            text_map[1][match[1]][0],
+            text_map[3][match[0]][1],
+            text_map[1][match[2]][2],
+            text_map[3][match[0]][3]
+        ))
+    
+    return matching_boundaries
 
 
 def highlight_matches(img_src, text_map, query, img_dest):
