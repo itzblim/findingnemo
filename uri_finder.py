@@ -66,12 +66,10 @@ def get_image_urls(website_url):
                   headers={'User-Agent': 'Mozilla/5.0'})
 
     webpage = urlopen(req).read()
-    soup1 = bs(webpage, "html.parser")
-    soup2 = bs(webpage, "lxml")
-    soup3 = bs(webpage, "html5lib")
+    soup = bs(webpage, "lxml")
 
     # Filter out info under the "src" or "data-src" tags from imgs
-    for img in soup1.find_all('img'):
+    for img in soup.find_all('img'):
         temp_list1.append(img.get('src'))
         if img.get('src') == None:
             temp_list1.append(img.get('data-src'))
@@ -79,7 +77,7 @@ def get_image_urls(website_url):
     # Remove src/data-src info which has None, ""
     for img_url in temp_list1:
         if img_url != None and img_url != "":
-            if img_url.endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+            if img_url.endswith(('.svg', '.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
                 temp_list2.append(img_url)
 
     # Prefix the src/data-src urls with the appropriate url_prefixes
