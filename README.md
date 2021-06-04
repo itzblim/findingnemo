@@ -21,3 +21,9 @@ Different Submodules
   - Run python application from here (terminal: python main_processing.py) 
   - Contains input_url 
   - Selected functions for preprocessing, queries and debugging 
+
+Chrome Extension Folder 
+- Images and Logos 
+- manifest.json 
+- popup.html
+- LOL more to come haha sike
