@@ -71,7 +71,6 @@ print_text(cna)
 
 # dynamically loaded webpages? <--?
 #
-# possible creation of requirements.txt at the end -- Bryan
 
 # Replace images in source code -- Bryan
 # Link images so that we can jump to the matched images in the site.
