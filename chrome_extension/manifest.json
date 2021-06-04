@@ -1,0 +1,16 @@
+{
+    "name": "PIC-Search",
+    "version": "1.0.0",
+    "description": "Unlocking the ability to search both text and images (through OCR) for matching results",
+    "manifest_version": 2,
+    "icons": {
+        "128": "icon_128px.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon_19px.png"
+    },
+    "permissions": [
+        "activeTab"
+    ]
+}
