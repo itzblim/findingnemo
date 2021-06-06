@@ -2,8 +2,10 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 import requests
+import sys
 from yarl import URL
 import validators
+import os.path
 
 
 # Testing urls
@@ -94,4 +96,11 @@ def get_image_urls(website_url):
     return image_urls
 
 
-print(get_image_urls(input_url))
+orig_sys = sys.stdout
+save_to_path = 'chrome_extension'
+complete_name = os.path.join(save_to_path, "img_urls.txt")
+with open(complete_name, 'w') as out:
+    sys.stdout = out
+    print(len(get_image_urls(input_url)))
+    for i in get_image_urls(input_url):
+        print(i)
