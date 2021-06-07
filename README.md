@@ -2,7 +2,7 @@
 
 Impt step: Update api_key.py to your own api key 
 
-Different Submodules 
+## Different Submodules 
 
 - uri_finder.py
   - Functions for pulling image urls from the given website 
@@ -22,8 +22,13 @@ Different Submodules
   - Contains input_url 
   - Selected functions for preprocessing, queries and debugging 
 
-Chrome Extension Folder 
+## Chrome Extension Folder 
 - Images and Logos 
 - manifest.json 
 - popup.html
-- LOL more to come haha sike
+- content.js --> Script to replace img in chrome extension
+
+## Chrome Extension Development Phase 
+- chrome://extensions 
+- Enable Developer Mode 
+- Load Unpacked, select chrome_extension sub-folder 

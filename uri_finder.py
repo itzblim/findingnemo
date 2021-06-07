@@ -79,7 +79,7 @@ def get_image_urls(website_url):
     # Remove src/data-src info which has None, ""
     for img_url in temp_list1:
         if img_url != None and img_url != "":
-            if img_url.endswith(('.svg', '.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+            if img_url.endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
                 temp_list2.append(img_url)
 
     # Prefix the src/data-src urls with the appropriate url_prefixes
@@ -98,9 +98,13 @@ def get_image_urls(website_url):
 
 orig_sys = sys.stdout
 save_to_path = 'chrome_extension'
-complete_name = os.path.join(save_to_path, "img_urls.txt")
+complete_name = os.path.join(save_to_path, "img_urls.js")
 with open(complete_name, 'w') as out:
     sys.stdout = out
-    print(len(get_image_urls(input_url)))
-    for i in get_image_urls(input_url):
-        print(i)
+    img_array = "var img_array = ["
+    for i in range(len(get_image_urls(input_url))):
+        if i == 0:
+            img_array += ("\"" + get_image_urls(input_url)[i] + "\"")
+        else:
+            img_array += (", \"" + get_image_urls(input_url)[i] + "\"")
+    print(img_array + "]")
