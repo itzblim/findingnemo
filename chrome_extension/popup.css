@@ -131,6 +131,7 @@
   overflow: hidden;
   padding: 0 31px;
   width: 106px;
+  background-color: rgb(245, 67, 67);
 }
 
 .plugin-file-cover-1 .pic-search-status {
@@ -151,7 +152,7 @@
   height: 22px;
   margin-left: 42px;
   mix-blend-mode: normal;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 3px 10px;
   width: 30px;
 }
@@ -162,6 +163,7 @@
   min-width: 8px;
   mix-blend-mode: normal;
   text-align: center;
+  align-items: center;
 }
 .plugin-file-cover-1 .run {
   height: 15px;
@@ -181,6 +183,7 @@
   overflow: hidden;
   padding: 0 39px;
   width: 106px;
+  background-color: rgb(1, 184, 1);
   
 }
 
