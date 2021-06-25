@@ -16,6 +16,7 @@
                 "<all_urls>"
             ],
             "js": [
+                "jquery.js",
                 "imgUrls.js",
                 "content.js",
                 "popup.js"
@@ -23,7 +24,8 @@
         }
     ],
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "tabs"
     ],
     "web_accessible_resources": [
         "images/*.jpg"

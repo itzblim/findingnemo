@@ -5,13 +5,13 @@ import requests
 import sys
 from yarl import URL
 import validators
-import os.path
+import os
 
 
 # Testing urls
-#input_url = "https://eresources.nlb.gov.sg/Main/"
-input_url = "http://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
-#input_url = "http://darwin-online.org.uk/content/frameset?viewtype=text&itemID=F1497&pageseq=5"
+#website_url = "https://eresources.nlb.gov.sg/Main/"
+website_url = "http://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
+#website_url = "http://darwin-online.org.uk/content/frameset?viewtype=text&itemID=F1497&pageseq=5"
 ###############
 
 
@@ -34,9 +34,10 @@ def is_absolute(url):
 #         return "https://"
 #     else:
 #         return "http://"
+#     url refers to the url of the individual img,
+#     website_url refers to the url of the entire webpage
 
-
-def abs_relative(url):
+def abs_relative(url, website_url):
     if is_absolute(url):
         if url.startswith("http://"):
             return url[:4] + "s" + url[4:]
@@ -48,7 +49,7 @@ def abs_relative(url):
         else:
             return "https://" + url
     else:
-        return "https://" + URL(input_url).host + url
+        return "https://" + URL(website_url).host + url
 
 
 def get_image_urls(website_url):
@@ -84,7 +85,7 @@ def get_image_urls(website_url):
 
     # Prefix the src/data-src urls with the appropriate url_prefixes
     for img_url in temp_list2:
-        temp_list3.append(abs_relative(img_url))
+        temp_list3.append(abs_relative(img_url, website_url))
 
     # Remove image_urls if they are not valid
     for img_url in temp_list3:
@@ -96,15 +97,16 @@ def get_image_urls(website_url):
     return image_urls
 
 
-orig_sys = sys.stdout
-save_to_path = 'chrome_extension'
-complete_name = os.path.join(save_to_path, "img_urls.js")
-with open(complete_name, 'w') as out:
-    sys.stdout = out
-    img_array = "var img_array = ["
-    for i in range(len(get_image_urls(input_url))):
-        if i == 0:
-            img_array += ("\"" + get_image_urls(input_url)[i] + "\"")
-        else:
-            img_array += (", \"" + get_image_urls(input_url)[i] + "\"")
-    print(img_array + "]")
+def generate_imgUrlJS(website_url):
+    orig_sys = sys.stdout
+    save_to_path = 'templates'
+    complete_name = os.path.join(save_to_path, "imgUrls.js")
+    with open(complete_name, 'w') as out:
+        sys.stdout = out
+        img_array = "var imgArray = ["
+        for i in range(len(get_image_urls(website_url))):
+            if i == 0:
+                img_array += ("\"" + get_image_urls(website_url)[i] + "\"")
+            else:
+                img_array += (", \"" + get_image_urls(website_url)[i] + "\"")
+        print(img_array + "]")

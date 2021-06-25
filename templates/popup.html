@@ -6,7 +6,7 @@
         <div class="plugin-file-cover-1 screen">
             <div class="mainsearchbar">
                 <div class="searchtext">
-                    <input type="text" placeholder="Search..">
+                    <input id="searchBar" type="text" placeholder="Search..">
                 </div>
                 <div id=hitCounter class="numberofhits">0/0</div>
                 <input id="arrowUp" type="image" class="arrowup" src="images/arrow_up_white.png" />
@@ -44,8 +44,9 @@
             </div>
         </div>
     </body>
-    <script src="popup.js"></script>
 </div>
+<script src="jquery.js"></script>
+<script src="popup.js"></script>
 
 <!-- need fixing: text overflow from textHits imgHits frame, text overflow from hitCounter, make search bar nicer -->
 <!-- 
@@ -59,9 +60,6 @@
 
 <body>
     <h1>My Website</h1>
-    <form action="localhost:5000/my-link/">
-        <input type="submit" value="Click me" />
-    </form>
 
     <button> <a href="http://localhost:5000/my-link/">Click me</a></button>
 

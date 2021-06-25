@@ -49,16 +49,19 @@ def load_url():
 
 
 # Input website
-input_url = "https://www.channelnewsasia.com/news/singapore/psle-new-scoring-system-cut-off-points-secondary-school-moe-14704496"
+#nput_url = "https://www.channelnewsasia.com/news/singapore/psle-new-scoring-system-cut-off-points-secondary-school-moe-14704496"
 
 # Preprocess the website's images
-cna = get_website_data(input_url)
+#cna = get_website_data(input_url)
 
 # Run a query on the website's images
-find(cna, "mer info")
+#find(cna, "mer info")
 
 # For debugging
-print_text(cna)
+# print_text(cna)
+
+
+######################Comments######################
 
 # Backend
 
@@ -77,3 +80,5 @@ print_text(cna)
 
 # Frontend
 # look up chrome extension videos
+
+####################################################
