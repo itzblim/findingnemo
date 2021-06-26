@@ -2,7 +2,7 @@ var textHits = 0
 var imgHits = 0
 var totalHits = textHits + imgHits
 var counterPosition = 1
-var testImgArray = [1, 2, 3, 4, 5]
+var imgArray
 
 
 
@@ -36,15 +36,26 @@ function searchBar(event) {
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=utf-8",
-            url: "http://localhost:5000/currentUrl-link/",
+            url: "http://localhost:5000/postCurrentUrl-link/",
             traditional: "true",
             data: JSON.stringify({ currentUrl }),
             dataType: "json"
         })
 
+        $.ajax({
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            url: "http://localhost:5000/getImgUrl-link/",
+            dataType: "json",
+            success: function (res) {
+                imgArray = res
+            }
+        })
+
+        return false
     }
-    return false
 }
+
 
 function hitCounter() {
     if (totalHits == 0) {
@@ -83,8 +94,8 @@ function escape() {
 }
 
 function showRunAlert() {
-    var myText = "Proof of Concept";
-    alert(myText);
+    //to test the imgArray if loaded properly
+    alert(imgArray);
 }
 
 

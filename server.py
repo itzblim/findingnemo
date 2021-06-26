@@ -12,22 +12,28 @@ def popup():
 
 
 @app.route('/search-link/', methods=['POST'])
-def get_search_query():
+def post_search_query():
+    global search_term
     if request.method == 'POST':
         search_term = request.get_json()["searchElem"]
         print(search_term)
         return '', 200
 
 
-@ app.route('/currentUrl-link/', methods=['POST'])
-def get_current_url():
+@ app.route('/postCurrentUrl-link/', methods=['POST'])
+def post_current_url():
+    global website_url
     if request.method == 'POST':
         website_url = request.get_json()["currentUrl"]
         print(website_url)
-        Finder.generate_imgUrlJS(website_url)
-        # Some File Closed IO Error here
-        # Only works 1st time when loading server
         return '', 200
+
+
+@ app.route('/getImgUrl-link/', methods=['GET'])
+def getImgUrl():
+    if request.method == 'GET':
+        imgUrls = Finder.generate_imgUrlJS(website_url)
+        return imgUrls, 200
 
 
 if __name__ == '__main__':
