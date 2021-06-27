@@ -10,13 +10,20 @@
 
 - [Overview](#overview)
 - [Quickstart](#quickstart) 
+- [Installation](#installation) 
 - [Features](#features)
 - [Contributors](#contributors)
 
 ## 📝 Overview
-<p align="center">
-  <img width=12.5% src="">
+<p align="left">
+  <img width =49% src="templates/images/Poster.png">
 </p>
 
 
 ## ⚡️ Quickstart
+
+## ⚙️ Installation
+
+## 🎯 Features
+
+## 🌚 Contributors 
