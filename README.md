@@ -8,12 +8,12 @@
 
 ## Table of Contents
 
-- [📝 Overview](#---overview)
+- [📝 Overview](#-overview)
 - [🔎 Project Scope](#-project-scope)
 - [⚙️ Installation](#%EF%B8%8F-installation)
-- [⚡️ Quickstart](#---quickstart)
-- [🎯 Application Demo](#---application-demo)
-- [🌚 Contributors](#---contributors)
+- [⚡️ Quickstart](#%EF%B8%8F-quickstart)
+- [🎯 Application Demo](#-application-demo)
+- [🌚 Contributors](#-contributors)
 
 ## 📝 Overview
 Rapid and intuitive retrieval of information is a goal that developers always strive to achieve in implementations of applications.
