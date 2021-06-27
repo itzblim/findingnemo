@@ -9,13 +9,13 @@ def highlight_regions(img_src, regions, img_dest):
     for region in regions:
         if (region != (0, 0, 0, 0)):
             img_crop = img.crop(region)
+            img_crop = img_crop.convert("RGB")
             overlay = Image.new(
                 img_crop.mode, img_crop.size, color=(255, 255, 0))
             img_crop = Image.blend(img_crop, overlay, 0.4)
             img.paste(img_crop, region)
     if (img_dest != "NA"):
         img.save(img_dest)
-    return img
 
 
 def get_matching_regions(text_map, query):
@@ -39,7 +39,7 @@ def get_matching_regions(text_map, query):
                 letter_matches[next_start + j] = True
 
     for i in range(len(text_map[2])):
-        match_found = False;
+        match_found = False
         for j in range(len(text_map[2][i])):
             if (letter_matches[letter_index] and not match_found):
                 match_found = True
@@ -47,10 +47,10 @@ def get_matching_regions(text_map, query):
             if (match_found and not letter_matches[letter_index]):
                 word_matches.append((i, start_index, letter_index - 1))
                 match_found = False
-            letter_index += 1;
+            letter_index += 1
         if match_found:
             word_matches.append((i, start_index, letter_index - 1))
-        letter_index += 1;
+        letter_index += 1
     
     for match in word_matches:
         matching_boundaries.append((
@@ -67,4 +67,6 @@ def highlight_matches(img_src, text_map, query, img_dest):
     """
     Highlight matches to a query from a source file and save to destintion file.
     """
-    highlight_regions(img_src, get_matching_regions(text_map, query), img_dest)
+    matching_regions = get_matching_regions(text_map, query)
+    highlight_regions(img_src, matching_regions, img_dest)
+    return len(matching_regions)
