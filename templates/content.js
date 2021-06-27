@@ -1,27 +1,34 @@
-console.log("Check if content.js is running");
-var localImgArray = ['images/cat.jpg', 'images/cat2.jpg', 'images/cat3.jpg']
+var refreshes = 0;
 
-function replaceImages() {
+function replaceImages(oldLinks, newLinks) {
+    console.log("Replacing images...")
     let images = document.querySelectorAll('img');
-
-    for (var i = 0; i < imgArray.length; i++) {
+    var suffix = ""
+    if (refreshes != 0) {
+        suffix = "?t=" + refreshes
+    }
+    refreshes++
+    for (var i = 0; i < oldLinks.length; i++) {
         for (elt of images) {
-            if (elt.src == imgArray[i]) {
-                let file = localImgArray[i];
-                let url = chrome.extension.getURL(file);
+            if (elt.src == oldLinks[i] + suffix) {
+                let file = newLinks[i];
+                let url = file + "?t=" + refreshes
                 elt.src = url;
                 elt.setAttribute("id", `Pic${i}`)
+                console.log("Image replaced.")
             }
         }
     }
+    console.log("All image replacements completed.")
 }
 
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+    if ((msg.from === 'popup') && (msg.subject === 'imglists')) {
+      replaceImages(msg.oldImgs, msg.newImgs)
+      response("Successful!");
+    }
+  });
 
-//To find a slightly more permanent fix than this. 
-//Somehow functions which wait for webpage to load doesnt fully wait for it to load
-
-//this function must load only after url finder has finish loading 
-setTimeout(() => { replaceImages(); }, 5000)
 
 
 
