@@ -58,6 +58,7 @@ deactivate
 ## 🎯 Features
 
 For more in-depth view of the application and its features, refer to this video: 
+[![Pic-Search Video](templates/images/Milestone1Vid.PNG)](https://drive.google.com/file/d/1-zcvFuJivs6MDGF_jTDzGfZyfx8GC0Fi/view "Milestone 1 Video")
 
 
 ## 🌚 Contributors 
