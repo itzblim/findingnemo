@@ -1,34 +1,16 @@
-# Orbital 2021 -- Finding Nemo
+<h1 align="center"> PIC-Search </h1> <br>
+<p align="center"><img width=12.5% src="templates/images/logo.png"></p>
+<p align="center">
+  Ctrl F Made Easy with Google Image OCR. 
+</p>
 
-Impt step: Update api_key.py to your own api key 
+## Table of Contents
 
-## Different Submodules 
+- [Overview](#overview)
+- [Quickstart](#quickstart) 
+- [Features](#features)
+- [Contributors](#contributors)
 
-- uri_finder.py
-  - Functions for pulling image urls from the given website 
+## 📝 Overview 
 
-- google_ocr.py 
-  - Contains all the functions for detecting text within image files 
-  - Uses Google Vision API 
-
-- dl_stge.py 
-  - Functions for Download and Storage of Image Files into Local System 
-
-- highlight.py
-  - Functions for highlighting the appropriate keywords 
-
-- main_processing.py 
-  - Run python application from here (terminal: python main_processing.py) 
-  - Contains input_url 
-  - Selected functions for preprocessing, queries and debugging 
-
-## Chrome Extension Folder 
-- Images and Logos 
-- manifest.json 
-- popup.html
-- content.js --> Script to replace img in chrome extension
-
-## Chrome Extension Development Phase 
-- chrome://extensions 
-- Enable Developer Mode 
-- Load Unpacked, select chrome_extension sub-folder 
+## ⚡️ Quickstart
