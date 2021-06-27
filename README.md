@@ -9,7 +9,7 @@
 ## Table of Contents
 
 - [📝 Overview](#---overview)
-- [🔎 Project Scope](#---project-scope)
+- [🔎 Project Scope](#-project-scope)
 - [⚙️ Installation](#%EF%B8%8F-installation)
 - [⚡️ Quickstart](#---quickstart)
 - [🎯 Application Demo](#---application-demo)
