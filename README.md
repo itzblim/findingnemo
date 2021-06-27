@@ -10,7 +10,7 @@
 
 - [📝 Overview](#---overview)
 - [🔎 Project Scope](#---project-scope)
-- [⚙️ Installation](#---installation)
+- [⚙️ Installation](#%EF%B8%8F-installation)
 - [⚡️ Quickstart](#---quickstart)
 - [🎯 Application Demo](#---application-demo)
 - [🌚 Contributors](#---contributors)
