@@ -89,3 +89,6 @@ For more in-depth view of the application and its features, refer to this video:
 </p>
 
 ## 🌚 Contributors 
+<a href="https://github.com/itzblim/findingnemo/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=itzblim/findingnemo" />
+</a>
