@@ -85,7 +85,7 @@ python server.py
 ## 🎯 Application Demo
 For more in-depth view of the application and its features, refer to this video: 
 <p align="center">
-  <a href="https://drive.google.com/file/d/1-zcvFuJivs6MDGF_jTDzGfZyfx8GC0Fi/view"><img width = 80% src="templates/images/Milestone1Vid.PNG" alt="Milestone 1 Video"></a>
+  <a href="https://drive.google.com/file/d/1cmbXPrkzKYo_QL3bH9DYMNRDgNTzuMyu/view"><img width = 80% src="templates/images/Milestone2Vid.PNG" alt="Milestone 2 Video"></a>
 </p>
 
 ## 🌚 Contributors 
