@@ -14,6 +14,7 @@ function replaceImages(oldLinks, newLinks) {
                 let file = newLinks[i];
                 let url = file + "?t=" + refreshes
                 elt.src = url;
+                elt.srcset = url;
                 elt.setAttribute("id", `Pic${i}`)
                 console.log("Image replaced.")
             }
