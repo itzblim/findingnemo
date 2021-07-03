@@ -13,7 +13,7 @@ def process_images(img_uri_list):
     text_map_list = list()
     for img_uri in img_uri_list:
         text_map_list.append(Ocr.get_text_map(img_uri))
-    return (img_id_list, text_map_list)
+    return (img_id_list, text_map_list, img_uri_list)
 
 
 def print_text(img_data):
@@ -30,12 +30,18 @@ def find(img_data, query):
     Takes in the processed data for a set of images and a query.
     Highlights each image's matches and saves them accordingly.
     """
+    images_matched = list()
     for i in range(len(img_data[0])):
-        Highlight.highlight_matches(Dl_stge.get_original(
-            img_data[0][i]), img_data[1][i], query, Dl_stge.get_new(img_data[0][i]))
+        no_of_image_matches = Highlight.highlight_matches(
+            Dl_stge.get_original(img_data[0][i]),
+            img_data[1][i],
+            query,
+            Dl_stge.get_new(img_data[0][i]))
+        for j in range(no_of_image_matches):
+            images_matched.append(i)
+    return images_matched
 
-
-def get_website_data(url):
+def process_website_data(url):
     """
     Takes in the URL for a website.
     Processes the images and returns the image data.
@@ -43,42 +49,36 @@ def get_website_data(url):
     return process_images(Finder.get_image_urls(url))
 
 
-def load_url():
-    # test
-    return 1
+def load_url(url):
+    cached_data = Dl_stge.retrieve_website_data(url)
+    if (cached_data == -1):
+        website_data = process_website_data(url)
+        Dl_stge.store_website_data(website_data, url)
+        return website_data
+    Dl_stge.store_images(cached_data[2])
+    return cached_data
 
 
 # Input website
-#nput_url = "https://www.channelnewsasia.com/news/singapore/psle-new-scoring-system-cut-off-points-secondary-school-moe-14704496"
+# input_url = "https://www.channelnewsasia.com/news/world/websites-down-reddit-amazon-widespread-internet-outage-14971992"
 
-# Preprocess the website's images
-#cna = get_website_data(input_url)
+# # Preprocess the website's images
+# cna = load_url(input_url)
 
-# Run a query on the website's images
-#find(cna, "mer info")
+# # Run a query on the website's images
+# find(cna, "mer info")
 
-# For debugging
+# # For debugging
 # print_text(cna)
-
-
-######################Comments######################
 
 # Backend
 
-# ben to-dos
-# .svg see if can convert
-# for svg: https://pypi.org/project/svglib/
-# pickling
-# Create separate files for loading and finding and
-# use cmd line args for url and query
-
 # dynamically loaded webpages? <--?
 #
+# possible creation of requirements.txt at the end -- Bryan
 
 # Replace images in source code -- Bryan
 # Link images so that we can jump to the matched images in the site.
 
 # Frontend
-# look up chrome extension videos
-
-####################################################
+# look up chrome extension videos <------- !!

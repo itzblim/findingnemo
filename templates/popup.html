@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="popup.css">
+
+<div class="container-center-horizontal">
+
+    <body style="margin: 0;">
+        <div class="plugin-file-cover-1 screen">
+            <div class="mainsearchbar">
+                <div class="searchtext">
+                    <input id="searchBar" type="text" placeholder="Search..">
+                </div>
+                <div id=hitCounter class="numberofhits">0/0</div>
+                <input id="arrowUp" type="image" class="arrowup" src="images/arrow_up_white.png" />
+                <input id="arrowDown" type="image" class="arrowdown"
+                    src="images/arrow_down_white.png" />
+                <input id="escape" type="image" class="cross" src="images/cross.png" />
+            </div>
+            <div class="pic-search-status valign-text-middle armata-normal-black-12px">
+                <span><span>PIC-Search Status:</span><span></span> </span>
+            </div>
+            <div class="flex-row">
+                <button id="runButton"
+                    class="run valign-text-middle armata-normal-black-12px">Run</button>
+
+                <button id="pauseButton"
+                    class="pause valign-text-middle armata-normal-black-12px">Pause</button>
+            </div>
+            <div class="search-hits valign-text-middle armata-normal-black-12px">Search Hits:</div>
+            <div class="flex-row-1">
+                <img class="textimg" src="images/text_img.png" />
+                <div class="presentborder border-1px-chambray">
+                    <div id="textHits"
+                        class="presentnr valign-text-middle armata-normal-black-12px">"textHits"
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row-2">
+                <img class="imgimg" src="images/gallery_img.png" />
+                <div class="presentborder border-1px-chambray">
+                    <div id="imgHits" class="presentnr valign-text-middle armata-normal-black-12px">
+                        "imgHits"
+                    </div>
+                </div>
+                <img class="logosettings" src="images/logo.png" />
+            </div>
+        </div>
+    </body>
+</div>
+<script src="jquery.js"></script>
+<script src="popup.js"></script>
+
+<!-- need fixing: text overflow from textHits imgHits frame, text overflow from hitCounter, make search bar nicer -->
+<!-- 
+<!doctype html>
+
+
+<head>
+    <title>Test</title>
+    <meta charset=utf-8>
+</head>
+
+<body>
+    <h1>My Website</h1>
+
+    <button> <a href="http://localhost:5000/my-link/">Click me</a></button>
+
+</body> -->
