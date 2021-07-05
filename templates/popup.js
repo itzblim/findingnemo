@@ -62,6 +62,18 @@ function searchBar(event) {
         });
       },
     });
+    //word search done here
+    if (searchElem) {
+      chrome.tabs.query(
+        {
+          active: true,
+          lastFocusedWindow: true,
+        },
+        function (tabs) {
+          chrome.tabs.executeScript(tabs[0].id, { file: "searchText.js" });
+        }
+      );
+    }
   }
 }
 
