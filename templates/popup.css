@@ -61,7 +61,7 @@
   align-items: flex-start;
   align-self: center;
   display: flex;
-  margin-left: 2.0px;
+  margin-left: 2px;
   margin-top: 8px;
   min-width: 250px;
 }
@@ -174,7 +174,7 @@
   text-align: center;
   border-radius: 8px;
   cursor: pointer;
-    
+
   align-items: center;
   border-radius: 10px;
   display: flex;
@@ -184,7 +184,6 @@
   padding: 0 39px;
   width: 106px;
   background-color: rgb(1, 184, 1);
-  
 }
 
 .plugin-file-cover-1 .search-hits {
