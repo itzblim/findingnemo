@@ -5,6 +5,8 @@ var counterPosition = 1;
 var newImgArray;
 var oldImgArray;
 var currentUrl;
+//If true, then the image search is activated--> To be done by the run and pause button
+var imageSearch = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchBar").addEventListener("keypress", searchBar);
@@ -22,46 +24,48 @@ function searchBar(event) {
   counterPosition = 1;
   searchElem = document.getElementById("searchBar").value;
   if (event.key === "Enter") {
-    $.ajax({
-      type: "POST",
-      contentType: "application/json;charset=utf-8",
-      url: "http://localhost:5000/search-link/",
-      traditional: "true",
-      data: JSON.stringify({ searchElem }),
-      dataType: "json",
-      complete: function () {
-        $.ajax({
-          type: "GET",
-          contentType: "application/json;charset=utf-8",
-          url: "http://localhost:5000/getImgUrl-link/",
-          dataType: "json",
-          success: function (res) {
-            var n = res.length / 2;
-            newImgArray = res
-              .slice(0, n - 1)
-              .map((x) =>
-                "http://localhost:8000/templates/images/new/".concat(x)
-              );
-            chrome.tabs.query(
-              { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
-              function (tabs) {
-                chrome.tabs.sendMessage(
-                  tabs[0].id,
-                  {
-                    from: "popup",
-                    subject: "imglists",
-                    oldImgs: newImgArray,
-                    newImgs: newImgArray,
-                  },
-                  function (res) {}
+    if (imageSearch) {
+      $.ajax({
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        url: "http://localhost:5000/search-link/",
+        traditional: "true",
+        data: JSON.stringify({ searchElem }),
+        dataType: "json",
+        complete: function () {
+          $.ajax({
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            url: "http://localhost:5000/getImgUrl-link/",
+            dataType: "json",
+            success: function (res) {
+              var n = res.length / 2;
+              newImgArray = res
+                .slice(0, n - 1)
+                .map((x) =>
+                  "http://localhost:8000/templates/images/new/".concat(x)
                 );
-                upArrow();
-              }
-            );
-          },
-        });
-      },
-    });
+              chrome.tabs.query(
+                { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
+                function (tabs) {
+                  chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                      from: "popup",
+                      subject: "imglists",
+                      oldImgs: newImgArray,
+                      newImgs: newImgArray,
+                    },
+                    function (res) {}
+                  );
+                  upArrow();
+                }
+              );
+            },
+          });
+        },
+      });
+    }
     //word search done here
     if (searchElem) {
       chrome.tabs.query(
