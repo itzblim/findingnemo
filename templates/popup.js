@@ -5,8 +5,7 @@ var counterPosition = 1;
 var newImgArray;
 var oldImgArray;
 var currentUrl;
-//If true, then the image search is activated--> To be done by the run and pause button
-var imageSearch = false;
+//chrome.storage.local.set({ picSearchStatus: "PIC-Search Status: Run" });
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchBar").addEventListener("keypress", searchBar);
@@ -14,17 +13,24 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("arrowUp").addEventListener("click", upArrow);
   document.getElementById("arrowDown").addEventListener("click", downArrow);
   document.getElementById("escape").addEventListener("click", escape);
-  document.getElementById("runButton").addEventListener("click", showRunAlert);
+  document.getElementById("runButton").addEventListener("click", runAlert);
+  document.getElementById("pauseButton").addEventListener("click", pauseAlert);
   document.getElementById("textHits").innerHTML = textHits;
   document.getElementById("imgHits").innerHTML = imgHits;
-  showRunAlert();
+  chrome.storage.local.get(["picSearchStatus"], (data) => {
+    document.getElementById("picSearchStatus").innerHTML =
+      data.picSearchStatus === undefined
+        ? "PIC-Search Status: Not Set"
+        : data.picSearchStatus;
+  });
+  runAlert();
 });
 
 function searchBar(event) {
   counterPosition = 1;
   searchElem = document.getElementById("searchBar").value;
   if (event.key === "Enter") {
-    if (imageSearch) {
+    if (data.picSearchStatus === "PIC-Search Status: Run") {
       $.ajax({
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -144,7 +150,7 @@ function escape() {
   window.close();
 }
 
-function showRunAlert() {
+function runAlert() {
   chrome.tabs.query(
     { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
     function (tabs) {
@@ -186,4 +192,38 @@ function showRunAlert() {
       });
     }
   );
+}
+
+//Below is the actual runAlert function for the run button
+
+// function runAlert() {
+//   chrome.storage.local.set({ picSearchStatus: "PIC-Search Status: Run" });
+//   chrome.storage.local.get(["picSearchStatus"], (data) => {
+//     document.getElementById("picSearchStatus").innerHTML = data.picSearchStatus;
+//     chrome.tabs.query(
+//       { active: true, windowType: "normal", currentWindow: true },
+//       function (d) {
+//         var tabId = d[0].id;
+//         chrome.browserAction.setIcon({
+//           path: "/images/Logo_19px_green.png",
+//         });
+//       }
+//     );
+//   });
+// }
+
+function pauseAlert() {
+  chrome.storage.local.set({ picSearchStatus: "PIC-Search Status: Pause" });
+  chrome.storage.local.get(["picSearchStatus"], (data) => {
+    document.getElementById("picSearchStatus").innerHTML = data.picSearchStatus;
+    chrome.tabs.query(
+      { active: true, windowType: "normal", currentWindow: true },
+      function (d) {
+        var tabId = d[0].id;
+        chrome.browserAction.setIcon({
+          path: "/images/Logo_19px_red.png",
+        });
+      }
+    );
+  });
 }
