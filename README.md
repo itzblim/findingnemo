@@ -23,7 +23,7 @@ Yet, in modern applications such as Chrome and other web browsers, it is often n
 In particular, searching for text in images from websites can be very difficult and slow, requiring users to manually perform a visual scan through each available image.
 We believe that there would be a great increase in the productivity of users if search functions could find matches to text within images, in addition to simple text matching.
 
-The aim is to create an extension for web browsers that provides an enhanced search function to override existing Ctrl+F implementations with a searching algorithm that seamlessly scans through both text and images (through OCR) for matching results.
+The aim is to create an extension for web browsers that provides an enhanced search function to override existing Ctrl+F implementations with a searching algorithm that seamlessly scans through text within images (through OCR) for matching results.
 
 ## 🔎 Project Scope 
 ### With the use of Python and Google Vision OCR, the project's backend will involve: 
@@ -32,7 +32,7 @@ The aim is to create an extension for web browsers that provides an enhanced sea
   - Highlighting queried keywords, creating a new "transformed" image 
   - Replacing the images on the website with the new "transformed" images 
 ### With the use of Javascript, HTML and CSS, the project's frontend will involve   
-  - Creating a Google Chrome Extension popup which allows for searching functionality to find matches within text and images 
+  - Creating a Google Chrome Extension popup which allows for searching functionality to find matches for text within images 
 <p align="center">
   <img width = 80% src="templates/images/Poster.png">
 </p>
