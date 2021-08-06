@@ -4,7 +4,9 @@
     "description": "Unlocking the ability to search both text and images (through OCR) for matching results",
     "manifest_version": 2,
     "icons": {
-        "128": "images/icon_128px.png"
+        "128": "images/icon_128px.png", 
+        "19": "/images/Logo_19px_red.png",
+        "36": "/images/Logo_19px_green.png"
     },
     "browser_action": {
         "default_popup": "popup.html",
@@ -25,7 +27,8 @@
     ],
     "permissions": [
         "activeTab",
-        "tabs"
+        "tabs", 
+        "storage"
     ],
     "web_accessible_resources": [
         "images/*.jpg"

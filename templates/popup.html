@@ -28,9 +28,10 @@
         <input id="escape" type="image" class="cross" src="images/cross.png" />
       </div>
       <div
+        id="picSearchStatus"
         class="pic-search-status valign-text-middle armata-normal-black-12px"
       >
-        <span><span>PIC-Search Status:</span><span></span> </span>
+        "picSearchStatus"
       </div>
       <div class="flex-row">
         <button
@@ -51,7 +52,12 @@
         Search Hits:
       </div>
       <div class="flex-row-1">
-        <img class="textimg" src="images/text_img.png" />
+        <input
+          id="textimg"
+          type="image"
+          class="textimg"
+          src="images/text_img.png"
+        />
         <div class="presentborder border-1px-chambray">
           <div
             id="textHits"
@@ -62,7 +68,12 @@
         </div>
       </div>
       <div class="flex-row-2">
-        <img class="imgimg" src="images/gallery_img.png" />
+        <input
+          id="imgimg"
+          type="image"
+          class="imgimg"
+          src="images/gallery_img.png"
+        />
         <div class="presentborder border-1px-chambray">
           <div
             id="imgHits"
@@ -78,3 +89,6 @@
 </div>
 <script src="jquery.js"></script>
 <script src="popup.js"></script>
+
+<!-- To do: Change the icon color when run or pause 
+Link up the button to change the run pause statuses  -->

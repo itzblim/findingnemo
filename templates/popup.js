@@ -6,6 +6,7 @@ var newImgArray;
 var oldImgArray;
 var currentUrl;
 
+
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchBar").addEventListener("keypress", searchBar);
   document.getElementById("hitCounter").innerHTML = hitCounter();
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("textHits").innerHTML = textHits;
   document.getElementById("imgHits").innerHTML = imgHits;
   chrome.storage.local.get(["picSearchStatus"], (data) => {
+
     chrome.storage.local.set(
       {
         picSearchStatus: data.picSearchStatus === undefined
@@ -30,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : data.picSearchStatus;
   });
   startRun();
+
 });
 
 function searchBar(event) {
@@ -145,6 +148,7 @@ function changePosition(direction) {
 function escape() {
   window.close();
 }
+
 
 function startRun() {
   chrome.storage.local.get(["picSearchStatus"], (data) => {
