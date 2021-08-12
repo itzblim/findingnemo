@@ -8,14 +8,6 @@ import validators
 import os
 import json
 
-
-# Testing urls
-#website_url = "https://eresources.nlb.gov.sg/Main/"
-website_url = "http://www.channelnewsasia.com/news/singapore/moe-psle-new-scoring-system-secondary-1-cut-off-point-13479238"
-#website_url = "http://darwin-online.org.uk/content/frameset?viewtype=text&itemID=F1497&pageseq=5"
-###############
-
-
 def is_invalid(url):
     """
     Checks if url is invalid
@@ -46,7 +38,6 @@ def abs_relative(url, website_url):
             return url
         elif url.startswith("//"):
             return "https:" + url
-        # idk if absolute urls only have http and //, so added final check just in case
         else:
             return "https://" + url
     else:
@@ -100,17 +91,4 @@ def get_image_urls(website_url):
 
 def generate_imgUrlJS(website_url):
     return json.dumps(get_image_urls(website_url))
-    # orig_sys = sys.stdout
-    # save_to_path = 'templates'
-    # complete_name = os.path.join(save_to_path, "imgUrls.js")
-    # if os.path.exists(complete_name):
-    #     f = open(complete_name, 'w')
-    # with open(complete_name, 'w') as out:
-    #     sys.stdout = out
-    #     img_array = "var imgArray = ["
-    #     for i in range(len(get_image_urls(website_url))):
-    #         if i == 0:
-    #             img_array += ("\"" + get_image_urls(website_url)[i] + "\"")
-    #         else:
-    #             img_array += (", \"" + get_image_urls(website_url)[i] + "\"")
-    #     print(img_array + "]")
+

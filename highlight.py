@@ -62,7 +62,6 @@ def get_matching_regions(text_map, query):
     
     return matching_boundaries
 
-
 def highlight_matches(img_src, text_map, query, img_dest):
     """
     Highlight matches to a query from a source file and save to destintion file.

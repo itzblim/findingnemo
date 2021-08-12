@@ -70,15 +70,3 @@ def load_url(url):
 
 # # For debugging
 # print_text(cna)
-
-# Backend
-
-# dynamically loaded webpages? <--?
-#
-# possible creation of requirements.txt at the end -- Bryan
-
-# Replace images in source code -- Bryan
-# Link images so that we can jump to the matched images in the site.
-
-# Frontend
-# look up chrome extension videos <------- !!

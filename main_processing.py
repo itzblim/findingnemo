@@ -59,26 +59,3 @@ def load_url():
 
 # For debugging
 # print_text(cna)
-
-
-######################Comments######################
-
-# Backend
-
-# ben to-dos
-# .svg see if can convert
-# for svg: https://pypi.org/project/svglib/
-# pickling
-# Create separate files for loading and finding and
-# use cmd line args for url and query
-
-# dynamically loaded webpages? <--?
-#
-
-# Replace images in source code -- Bryan
-# Link images so that we can jump to the matched images in the site.
-
-# Frontend
-# look up chrome extension videos
-
-####################################################
